@@ -1,5 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule, ValidationErrors } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  ValidationErrors,
+  Validators,
+} from '@angular/forms';
 import { TimeBlockComponent } from './hero-form-reactive.component';
 
 describe('Given we are on the main task page, ', () => {
@@ -25,6 +29,7 @@ describe('Given we are on the main task page, ', () => {
     const fixture = TestBed.createComponent(TimeBlockComponent);
     const component = fixture.componentInstance;
 
+    component.updateDescription('');
     fixture.detectChanges();
 
     expect(component.description).toBeDefined();
@@ -57,6 +62,12 @@ describe('Given we are on the main task page, ', () => {
     component.updateDescription('abcde');
     fixture.detectChanges();
 
-    expect(component.description?.hasError('minlength')).toBeFalse();
+    console.log(component.description.errors);
+    console.log(component.description.errors);
+    console.log(component.description.errors);
+
+    expect(component.description.errors).toEqual({
+      minlength: { requiredLength: 4, actualLength: 1 },
+    });
   });
 });
