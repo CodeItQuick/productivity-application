@@ -7,15 +7,18 @@ import { TimeBlockComponent } from './reactive/hero-form-reactive.component';
 import { ForbiddenValidatorDirective } from './shared/forbidden-name.directive';
 import { IdentityRevealedValidatorDirective } from './shared/identity-revealed.directive';
 import { UniqueAlterEgoValidatorDirective } from './shared/alter-ego.directive';
+import { AppRoutingModule } from './app-routing.module';
+import { AboutComponent } from './about/about.component';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule],
   declarations: [
     AppComponent,
     TimeBlockComponent,
     ForbiddenValidatorDirective,
     IdentityRevealedValidatorDirective,
     UniqueAlterEgoValidatorDirective,
+    AboutComponent,
   ],
   bootstrap: [AppComponent],
 })
