@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="left-panel">
+    <h2>Daily Timeblocking</h2>
+    <form>
+      <table>
+        <tr>
+          <th>Description</th>
+        </tr>
+        <tr
+          [formGroup]="blockForm"
+          *ngFor="let item of createRange(9); let index = index"
+        >
+          <app-time-slot
+            [description]="timeSlotDescription[index]"
+            [timeBlockNumber]="index + 1"
+            (inputBlockRequest)="updateDescription($event)"
+          ></app-time-slot>
+        </tr>
+      </table>
+      <span *ngIf="description?.errors?.['minlength']">
+        Description must be at least 4 characters
+      </span>
+      <div [innerText]="blockDescription"></div>
+    </form>
+  </div>
+  <div class="right-panel">
+    <app-list></app-list>
+  </div>
+</div>
