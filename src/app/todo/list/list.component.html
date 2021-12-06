@@ -1,0 +1,39 @@
+<h2>TO-DO List</h2>
+<form>
+  <table>
+    <tr class="grid-container">
+      <th class="grid-item">Description</th>
+      <th style="display: flex; align-items: center; justify-content: center">
+        <button
+          (click)="addTodoItem()"
+          class="grid-item"
+          style="margin-left: 20px"
+        >
+          Add
+        </button>
+      </th>
+    </tr>
+    <tr *ngFor="let item of todo; let index = index" class="grid-container">
+      <input
+        type="text"
+        name="{{ index }}"
+        value="{{ item }}"
+        (change)="editTodoItem($event)"
+      />
+      <th>
+        <button
+          (click)="deleteTodo(index)"
+          style="
+            margin-top: 0;
+            margin-bottom: 0;
+            padding: 0.25rem;
+            background-color: green;
+            color: white;
+          "
+        >
+          Delete
+        </button>
+      </th>
+    </tr>
+  </table>
+</form>

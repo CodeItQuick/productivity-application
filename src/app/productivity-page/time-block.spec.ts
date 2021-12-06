@@ -4,7 +4,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { TimeBlockComponent } from './hero-form-reactive.component';
+import { TimeBlockComponent } from './time-block.component';
 
 describe('Given we are on the main task page, ', () => {
   beforeAll(() => {});
