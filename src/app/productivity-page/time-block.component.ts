@@ -6,6 +6,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
+import { TimeBlockService } from './time-block-service.service';
 
 @Component({
   selector: 'app-time-block',
@@ -22,7 +23,7 @@ export class TimeBlockComponent implements OnInit {
   }[];
   @Input() blockDescription: string[] = ['', '', '', '', '', '', '', '', ''];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private slService: TimeBlockService) {
     this.timeSlotDescription = '123456789'
       .split('')
       .map((_slotNum: string) => ({
@@ -33,11 +34,7 @@ export class TimeBlockComponent implements OnInit {
       }));
   }
 
-  ngOnInit(): void {
-    this.blockForm = this.formBuilder.group({
-      description: [[''], Validators.minLength(4)],
-    });
-  }
+  ngOnInit(): void {}
   get description(): FormArray {
     return <FormArray>this.blockForm?.get('description');
   }
@@ -48,14 +45,15 @@ export class TimeBlockComponent implements OnInit {
     newInput: string;
     timeBlockNumber: number | undefined;
   }): void {
-    this.blockDescription = this.blockDescription.map(
-      (block: string, idx: number) => {
-        if (idx === (timeBlockNumber || 0) - 1) return newInput;
-        else return block;
-      }
-    );
+    this.slService.addEntryToBlockRequest({
+      newInput,
+      blockNum: timeBlockNumber + '',
+    });
   }
   createRange(num: number) {
     return new Array(num);
+  }
+  displayValues() {
+    return this.slService.retrieveEntryValues();
   }
 }

@@ -29,7 +29,7 @@ describe('Given we are on the main task page, ', () => {
     const fixture = TestBed.createComponent(TimeBlockComponent);
     const component = fixture.componentInstance;
 
-    component.updateDescription('');
+    component.updateDescription({ newInput: '', timeBlockNumber: 1 });
     fixture.detectChanges();
 
     expect(component.description).toBeDefined();
@@ -46,7 +46,7 @@ describe('Given we are on the main task page, ', () => {
     const fixture = TestBed.createComponent(TimeBlockComponent);
     let component = fixture.componentInstance;
 
-    component.updateDescription('a');
+    component.updateDescription({ newInput: 'a', timeBlockNumber: 3 });
     fixture.detectChanges();
 
     expect(component.description?.hasError('minlength')).toBeTrue();
@@ -59,12 +59,8 @@ describe('Given we are on the main task page, ', () => {
     const fixture = TestBed.createComponent(TimeBlockComponent);
     let component = fixture.componentInstance;
 
-    component.updateDescription('abcde');
+    component.updateDescription({ newInput: 'abcde', timeBlockNumber: 2 });
     fixture.detectChanges();
-
-    console.log(component.description.errors);
-    console.log(component.description.errors);
-    console.log(component.description.errors);
 
     expect(component.description.errors).toEqual({
       minlength: { requiredLength: 4, actualLength: 1 },

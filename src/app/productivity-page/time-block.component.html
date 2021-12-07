@@ -13,14 +13,17 @@
           <app-time-slot
             [description]="timeSlotDescription[index]"
             [timeBlockNumber]="index + 1"
-            (inputBlockRequest)="updateDescription($event)"
           ></app-time-slot>
         </tr>
       </table>
       <span *ngIf="description?.errors?.['minlength']">
         Description must be at least 4 characters
       </span>
-      <div [innerText]="blockDescription"></div>
+      <h3>Entry Errors</h3>
+      <div
+        *ngFor="let errors of createRange(10); let index = index"
+        [innerText]="displayValues()[index]"
+      ></div>
     </form>
   </div>
   <div class="right-panel">
