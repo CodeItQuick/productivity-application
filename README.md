@@ -4,7 +4,8 @@
 
 Help me learn angular forms setup
 
-#Change-Log
+## Change Log
+
 6/12/2021: Added time-block-services. The tests likely don't work, but now changes in a sub-component can be propagated to the parent (relatively simply)
 
 ## TODO:
