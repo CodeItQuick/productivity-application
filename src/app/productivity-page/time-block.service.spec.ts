@@ -31,7 +31,7 @@ describe('given we are testing TimeBlockService', () => {
   // Proving to myself I can test the service
   it('given the service is created, when we enter "hello world", then no errors are displayed', () => {
     timeBlockService.addEntryToBlockRequest('hello world', 1, null);
-    expect(timeBlockService.retrieveEntryValues()).toEqual([
+    expect(timeBlockService.retrieveEntryErrorValues()).toEqual([
       '',
       '',
       '',
@@ -48,7 +48,7 @@ describe('given we are testing TimeBlockService', () => {
     validationControl.setValue('yes');
 
     timeBlockService.addEntryToBlockRequest('yes', 1, validationControl.errors);
-    expect(timeBlockService.retrieveEntryValues()).toEqual([
+    expect(timeBlockService.retrieveEntryErrorValues()).toEqual([
       '',
       'There are only this many characters: 3',
       '',

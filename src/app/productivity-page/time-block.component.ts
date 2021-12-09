@@ -20,6 +20,6 @@ export class TimeBlockComponent implements OnInit {
   ngOnInit(): void {}
 
   displayErrorValues() {
-    return this.slService.retrieveEntryValues();
+    return this.slService.retrieveEntryErrorValues();
   }
 }

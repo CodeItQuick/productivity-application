@@ -32,7 +32,7 @@ export class TimeBlockService {
       else return blockInfo;
     });
   }
-  retrieveEntryValues() {
+  retrieveEntryErrorValues() {
     return this.timeBlock.map(({ errors }: { errors: string }) => errors);
   }
 }
