@@ -1,4 +1,11 @@
-<td>{{ timeBlockNumber }}</td>
-<td>
-  <input type="text" id="description" (change)="inputBlockChange($event)" />
-</td>
+<tr [formGroup]="timeBlockForm">
+  <td>Task #{{ timeBlockNumber }}</td>
+  <td>
+    <input
+      type="text"
+      id="description"
+      formControlName="timeBlock"
+      (change)="inputBlockChange()"
+    />
+  </td>
+</tr>

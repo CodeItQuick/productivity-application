@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { TimeSlotComponent } from './time-slot.component';
 
@@ -8,9 +9,9 @@ describe('TimeSlotComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TimeSlotComponent ]
-    })
-    .compileComponents();
+      imports: [ReactiveFormsModule],
+      declarations: [TimeSlotComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

@@ -4,26 +4,17 @@
     <form>
       <table>
         <tr>
+          <th>Task Number</th>
           <th>Description</th>
         </tr>
-        <tr
-          [formGroup]="blockForm"
-          *ngFor="let item of createRange(9); let index = index"
-        >
-          <app-time-slot
-            [description]="timeSlotDescription[index]"
-            [timeBlockNumber]="index + 1"
-          ></app-time-slot>
-        </tr>
+        <app-time-slot
+          *ngFor="let block of timeBlocks; let i = index"
+          [timeBlockNumber]="i"
+        ></app-time-slot>
       </table>
-      <span *ngIf="description?.errors?.['minlength']">
-        Description must be at least 4 characters
-      </span>
+      <span> Description must be at least 4 characters </span>
       <h3>Entry Errors</h3>
-      <div
-        *ngFor="let errors of createRange(10); let index = index"
-        [innerText]="displayValues()[index]"
-      ></div>
+      <div>{{ displayErrorValues() }}</div>
     </form>
   </div>
   <div class="right-panel">
