@@ -11,9 +11,20 @@ import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './about/about.component';
 import { TimeSlotComponent } from './productivity-page/time-slot/time-slot.component';
 import { ListComponent } from './todo/list/list.component';
+import {
+  HttpClient,
+  HttpClientModule,
+  HttpHandler,
+} from '@angular/common/http';
 
 @NgModule({
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
+  ],
   declarations: [
     AppComponent,
     TimeBlockComponent,
@@ -25,5 +36,6 @@ import { ListComponent } from './todo/list/list.component';
     ListComponent,
   ],
   bootstrap: [AppComponent],
+  providers: [HttpClient],
 })
 export class AppModule {}

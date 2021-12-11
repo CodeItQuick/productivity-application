@@ -29,7 +29,6 @@ export class TimeSlotComponent implements OnInit {
   }
 
   inputBlockChange() {
-    console.log(this.timeBlockForm.get('timeBlock'));
     this.slService.addEntryToBlockRequest(
       this.timeBlockForm.get('timeBlock')?.value,
       this.timeBlockNumber,

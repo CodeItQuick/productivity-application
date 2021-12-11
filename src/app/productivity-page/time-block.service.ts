@@ -31,6 +31,7 @@ export class TimeBlockService {
         };
       else return blockInfo;
     });
+    console.log(this.timeBlock);
   }
   retrieveEntryErrorValues() {
     return this.timeBlock.map(({ errors }: { errors: string }) => errors);
