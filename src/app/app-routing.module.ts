@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { AboutComponent } from './about/about.component';
+import { LandingPageComponent } from 'projects/static-pages/src/lib/landing-page/landing-page.component';
+import { AboutComponent } from 'static-pages';
 
-const routes: Routes = [{ path: 'about', component: AboutComponent }];
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: 'landing-page', component: LandingPageComponent },
+];
 
 @NgModule({
   declarations: [],

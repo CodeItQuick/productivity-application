@@ -17,6 +17,12 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2017",
+    "paths": {
+      "static-pages": [
+        "dist/static-pages/static-pages",
+        "dist/static-pages"
+      ]
+    },
     "module": "es2020",
     "lib": [
       "es2020",

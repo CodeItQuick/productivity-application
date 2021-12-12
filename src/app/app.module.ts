@@ -4,7 +4,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
-import { AboutComponent } from './about/about.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProductivityModule } from 'projects/productivity-application/src/app/app.module';
 import { ToDoApplicationModule } from 'projects/to-do-application/src/app/app.module';
@@ -19,7 +18,7 @@ import { ToDoApplicationModule } from 'projects/to-do-application/src/app/app.mo
     ProductivityModule,
     ToDoApplicationModule,
   ],
-  declarations: [AppComponent, AboutComponent],
+  declarations: [AppComponent],
   bootstrap: [AppComponent],
   providers: [HttpClient],
 })
