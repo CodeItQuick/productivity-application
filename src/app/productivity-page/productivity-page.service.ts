@@ -1,12 +1,12 @@
 import { Injectable, OnInit } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
-import { ProductivityRequestService } from './send-request.service';
+import { ProductivityRequestService } from './productivity-request.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TimeBlockService {
+export class ProductivityPageService {
   timeBlock: { value: string; idx: number; errors: string }[];
   slServiceSubscription: Observable<
     { value: string; idx: number; errors: string }[]
@@ -37,7 +37,7 @@ export class TimeBlockService {
     newInput: string,
     errors: ValidationErrors | null | undefined,
     errorIdx: number
-  ) {
+  ): void {
     this.timeBlock = this.timeBlock.map(
       (block: { value: string; idx: number; errors: string }, idx: number) => {
         if (errorIdx === idx) {

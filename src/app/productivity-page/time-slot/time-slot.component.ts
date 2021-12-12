@@ -7,7 +7,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { TimeBlockService } from '../time-block.service';
+import { ProductivityPageService } from '../productivity-page.service';
 
 @Component({
   selector: 'app-time-slot',
@@ -20,7 +20,7 @@ export class TimeSlotComponent implements OnInit {
   formValue: { description: string } = { description: '' };
   timeBlockForm!: FormGroup;
 
-  constructor(private slService: TimeBlockService) {
+  constructor(private slService: ProductivityPageService) {
     this.formValue.description = this.timeBlock;
   }
   ngOnInit(): void {

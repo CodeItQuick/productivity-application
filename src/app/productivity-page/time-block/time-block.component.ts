@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TimeBlockService } from './time-block.service';
+import { ProductivityPageService } from '../productivity-page.service';
 
 @Component({
   selector: 'app-time-block',
@@ -12,9 +12,9 @@ export class TimeBlockComponent implements OnInit {
   timeBlocksObservable!: Observable<
     { value: string; idx: number; errors: string }[]
   >;
-  constructor(private slService: TimeBlockService) {}
+  constructor(private slService: ProductivityPageService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.timeBlocks = [];
     this.timeBlocksObservable = this.slService.subscribeToTimeBlocks();
     this.timeBlocksObservable.subscribe((x) => {
@@ -28,11 +28,13 @@ export class TimeBlockComponent implements OnInit {
   getValuesFromTimeBlock(idx: number): string {
     return this.slService.retrieveTimeBlocks()[idx];
   }
-  isAnyError() {
-    return this.slService.retrieveEntryErrorValues().filter((r) => r?.length)
-      .length;
+  isAnyError(): boolean {
+    return (
+      this.slService.retrieveEntryErrorValues().filter((r) => r?.length)
+        .length > 0
+    );
   }
-  displayErrorValues() {
+  displayErrorValues(): string[] {
     return this.slService.retrieveEntryErrorValues();
   }
 }

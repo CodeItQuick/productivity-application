@@ -4,7 +4,7 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { TimeBlockComponent } from './time-block.component';
+import { TimeBlockComponent } from './time-block/time-block.component';
 import { TimeSlotComponent } from './time-slot/time-slot.component';
 
 describe('Given we are on the main task page, ', () => {
