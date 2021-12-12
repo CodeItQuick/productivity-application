@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingPageComponent } from 'projects/static-pages/src/lib/landing-page/landing-page.component';
-import { AboutComponent } from 'static-pages';
+import { AboutComponent } from 'projects/static-pages/src/public-api';
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
