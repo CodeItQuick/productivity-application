@@ -1,13 +1,12 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import {
+  AbstractControl,
   FormBuilder,
   FormControl,
   FormGroup,
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { EventEmitter } from '@angular/core';
-import { Subject } from 'rxjs';
 import { TimeBlockService } from '../time-block.service';
 
 @Component({
@@ -16,25 +15,34 @@ import { TimeBlockService } from '../time-block.service';
   styleUrls: ['./time-slot.component.css'],
 })
 export class TimeSlotComponent implements OnInit {
-  timeBlockForm: FormGroup;
   @Input() timeBlockNumber: number = 0;
+  @Input() timeBlock!: string;
+  formValue: { description: string } = { description: '' };
+  timeBlockForm!: FormGroup;
 
-  constructor(
-    private slService: TimeBlockService,
-    private formBuilder: FormBuilder
-  ) {
-    this.timeBlockForm = this.formBuilder.group({
-      timeBlock: ['', Validators.minLength(4)],
+  constructor(private slService: TimeBlockService) {
+    this.formValue.description = this.timeBlock;
+  }
+  ngOnInit(): void {
+    this.timeBlockForm = new FormGroup({
+      description: new FormControl(this.timeBlock, [
+        Validators.minLength(4),
+        Validators.required,
+      ]),
     });
   }
 
-  inputBlockChange() {
-    this.slService.addEntryToBlockRequest(
-      this.timeBlockForm.get('timeBlock')?.value,
-      this.timeBlockNumber,
-      this.timeBlockForm.get('timeBlock')?.errors || null
-    );
+  get description() {
+    return this.timeBlockForm.get('description');
   }
 
-  ngOnInit(): void {}
+  addEntryToBlockRequest() {
+    if (this.timeBlockForm.get('description')?.errors !== null) {
+      this.slService.sendError(
+        this.timeBlock,
+        this.timeBlockForm.get('description')?.getError('minlength'),
+        this.timeBlockNumber
+      );
+    }
+  }
 }

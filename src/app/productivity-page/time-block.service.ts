@@ -1,39 +1,68 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { ValidationErrors } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { ProductivityRequestService } from './send-request.service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class TimeBlockService {
-  timeBlock: { value: string; idx: string; errors: string }[];
-
-  constructor() {
+export class TimeBlockService implements OnInit {
+  timeBlock: { value: string; idx: number; errors: string }[];
+  slServiceSubscription: Observable<
+    { value: string; idx: number; errors: string }[]
+  >;
+  constructor(private slService: ProductivityRequestService) {
     this.timeBlock = '123456789'
       .split('')
-      .map((idxNum) => ({ value: '', idx: idxNum, errors: '' }));
+      .map((block) => ({ value: '', idx: +block, errors: '' }));
+    this.slServiceSubscription = this.slService.retrieveTaskListObservable();
+    this.slServiceSubscription.subscribe(
+      (
+        x: {
+          value: string;
+          idx: number;
+          errors: string;
+        }[]
+      ) => {
+        this.timeBlock = x;
+      }
+    );
   }
-
-  addEntryToBlockRequest(
-    newInput: string,
-    inputIdx: number,
-    errors: ValidationErrors | null
-  ) {
-    this.timeBlock = this.timeBlock.map((blockInfo, idx) => {
-      if (inputIdx === idx)
-        return {
-          value: newInput,
-          idx: blockInfo + '',
-          errors:
-            errors !== null
-              ? 'There are only this many characters: ' +
-                errors?.['minlength']?.actualLength
-              : '',
-        };
-      else return blockInfo;
-    });
+  ngOnInit() {
     console.log(this.timeBlock);
   }
-  retrieveEntryErrorValues() {
+  subscribeToTimeBlocks(): Observable<
+    { value: string; idx: number; errors: string }[]
+  > {
+    return this.slServiceSubscription;
+  }
+  //FIXME: this is broken
+  sendError(
+    newInput: string,
+    errors: ValidationErrors | null | undefined,
+    errorIdx: number
+  ) {
+    this.timeBlock = this.timeBlock.map(
+      (block: { value: string; idx: number; errors: string }, idx: number) => {
+        if (errorIdx === idx) {
+          const newError = errors?.['actualLength']
+            ? `There has been an minlength error, current length: ${errors?.['actualLength']}`
+            : `Error this field is required`;
+          return {
+            value: newInput,
+            idx: errorIdx,
+            errors: newError,
+          };
+        } else {
+          return block;
+        }
+      }
+    );
+  }
+  retrieveEntryErrorValues(): string[] {
     return this.timeBlock.map(({ errors }: { errors: string }) => errors);
+  }
+  retrieveTimeBlocks(): string[] {
+    return this.timeBlock.map(({ value }: { value: string }) => value);
   }
 }

@@ -1,32 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
-import { TimeBlockService } from './time-block.service';
+import { map, Observable, Subscribable, Subscription } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SendRequestService {
-  constructor(private http: HttpClient, private slService: TimeBlockService) {}
+export class ProductivityRequestService {
+  retrieveTaskList: Observable<
+    { value: string; idx: number; errors: string }[]
+  >;
+  constructor(private http: HttpClient) {
+    this.retrieveTaskList = this.http.get<
+      { value: string; idx: number; errors: string }[]
+    >('/assets/task_list.json');
+  }
 
-  retrieveCurrentTasks() {
-    try {
-      const subscriptionService = this.http
-        .get<{ tasks: string[] }>('/assets/task_list.json')
-        .pipe(
-          map((responseData, idx: number) => ({
-            data: responseData?.tasks,
-            idx,
-          }))
-        )
-        .subscribe(({ data, idx }: { data: string[]; idx: number }) => {
-          console.log(data);
-          data.forEach((entry, idx: number) =>
-            this.slService.addEntryToBlockRequest(entry, idx, null)
-          );
-        });
-    } catch (e) {
-      console.log(e);
-    }
+  retrieveTaskListObservable(): Observable<
+    { value: string; idx: number; errors: string }[]
+  > {
+    return this.retrieveTaskList;
   }
 }

@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormsModule,
+  NG_VALIDATORS,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -11,11 +15,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './about/about.component';
 import { TimeSlotComponent } from './productivity-page/time-slot/time-slot.component';
 import { ListComponent } from './todo/list/list.component';
-import {
-  HttpClient,
-  HttpClientModule,
-  HttpHandler,
-} from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ProductivityRequestService } from './productivity-page/send-request.service';
 
 @NgModule({
   imports: [
@@ -36,6 +37,6 @@ import {
     ListComponent,
   ],
   bootstrap: [AppComponent],
-  providers: [HttpClient],
+  providers: [HttpClient, ProductivityRequestService],
 })
 export class AppModule {}

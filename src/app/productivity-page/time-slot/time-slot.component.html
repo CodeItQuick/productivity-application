@@ -4,8 +4,11 @@
     <input
       type="text"
       id="description"
-      formControlName="timeBlock"
-      (blur)="inputBlockChange()"
+      required
+      minlength="4"
+      formControlName="description"
+      (change)="addEntryToBlockRequest()"
+      placeholder="{{ timeBlock }}"
     />
   </td>
 </tr>

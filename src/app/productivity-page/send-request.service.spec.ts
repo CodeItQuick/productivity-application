@@ -1,13 +1,12 @@
 import { TestBed } from '@angular/core/testing';
-
-import { SendRequestService } from './send-request.service';
+import { ProductivityRequestService } from './send-request.service';
 
 describe('SendRequestService', () => {
-  let service: SendRequestService;
+  let service: ProductivityRequestService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(SendRequestService);
+    service = TestBed.inject(ProductivityRequestService);
   });
 
   it('should be created', () => {

@@ -1,14 +1,11 @@
-{
-  "tasks": [
-    "do homework",
-    "clean room",
-    "play rockband",
-    "go to school",
-    "play soccer",
-    "eat breakfast",
-    "eat lunch",
-    "eat supper",
-    "do laundry",
-    "watch tv"
-  ]
-}
+[
+  { "value": "do homework", "idx": 1, "errors": "" },
+  { "value": "clean room", "idx": 2, "errors": "" },
+  { "value": "play rockband", "idx": 3, "errors": "" },
+  { "value": "go to school", "idx": 4, "errors": "" },
+  { "value": "play soccer", "idx": 5, "errors": "" },
+  { "value": "eat breakfast", "idx": 6, "errors": "" },
+  { "value": "eat lunch", "idx": 7, "errors": "" },
+  { "value": "eat supper", "idx": 8, "errors": "" },
+  { "value": "do laundry", "idx": 9, "errors": "" }
+]
