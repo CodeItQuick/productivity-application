@@ -5,9 +5,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AboutComponent } from './about/about.component';
-import { ListComponent } from './todo/list/list.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { ProductivityModule } from 'projects/productivity-application/src/app/app.module';
+import { ToDoApplicationModule } from 'projects/to-do-application/src/app/app.module';
 
 @NgModule({
   imports: [
@@ -17,8 +17,9 @@ import { ProductivityModule } from 'projects/productivity-application/src/app/ap
     AppRoutingModule,
     HttpClientModule,
     ProductivityModule,
+    ToDoApplicationModule,
   ],
-  declarations: [AppComponent, AboutComponent, ListComponent],
+  declarations: [AppComponent, AboutComponent],
   bootstrap: [AppComponent],
   providers: [HttpClient],
 })
