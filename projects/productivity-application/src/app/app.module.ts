@@ -15,7 +15,6 @@ import { TimeSlotComponent } from './productivity-page/time-slot/time-slot.compo
     ReactiveFormsModule,
     HttpClientModule,
     BrowserModule,
-    BrowserModule,
     AppRoutingModule,
   ],
   providers: [],
