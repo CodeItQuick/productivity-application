@@ -6,7 +6,7 @@ import { ProductivityRequestService } from './send-request.service';
 @Injectable({
   providedIn: 'root',
 })
-export class TimeBlockService implements OnInit {
+export class TimeBlockService {
   timeBlock: { value: string; idx: number; errors: string }[];
   slServiceSubscription: Observable<
     { value: string; idx: number; errors: string }[]
@@ -28,15 +28,11 @@ export class TimeBlockService implements OnInit {
       }
     );
   }
-  ngOnInit() {
-    console.log(this.timeBlock);
-  }
   subscribeToTimeBlocks(): Observable<
     { value: string; idx: number; errors: string }[]
   > {
     return this.slServiceSubscription;
   }
-  //FIXME: this is broken
   sendError(
     newInput: string,
     errors: ValidationErrors | null | undefined,
