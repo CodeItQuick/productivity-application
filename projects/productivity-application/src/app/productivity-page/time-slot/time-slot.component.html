@@ -1,0 +1,14 @@
+<tr [formGroup]="timeBlockForm">
+  <td>Task #{{ timeBlockNumber }}</td>
+  <td>
+    <input
+      type="text"
+      id="description"
+      required
+      minlength="4"
+      formControlName="description"
+      (change)="addEntryToBlockRequest()"
+      placeholder="{{ timeBlock }}"
+    />
+  </td>
+</tr>
